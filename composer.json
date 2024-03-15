@@ -1,0 +1,38 @@
+{
+    "name": "myunet/generate",
+    "description": "This is a practical tool",
+    "keywords": [
+        "generate",
+        "myunet",
+        "php"
+    ],
+    "autoload": {
+        "psr-4": {
+            "myunet\\": "src/"
+        }
+    },
+    "license": [
+        "MIT",
+        "GPL-2.0+"
+    ],
+    "authors": [
+        {
+            "name": "myunet",
+            "email": "myunet@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "topthink/framework": "^6.0|^8.0"
+    },
+    "extra": {
+        "think":{
+            "services":[
+                "myunet\\Service"
+            ],
+            "config":{
+                "generate": "src/config.php"
+            }
+        }
+    }
+}
