@@ -4,6 +4,7 @@
  * 获取扩展根目录
  * @return string
  */
-function GetRootPath(){
+function GetRootPath(): string
+{
     return __DIR__;
 }

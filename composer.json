@@ -10,7 +10,10 @@
     "autoload": {
         "psr-4": {
             "myunet\\": "src/"
-        }
+        },
+        "files": [
+            "src/helper.php"
+        ]
     },
     "license": [
         "MIT",
