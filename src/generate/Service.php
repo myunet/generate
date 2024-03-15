@@ -1,6 +1,6 @@
 <?php
 
-namespace myunet;
+namespace myunet\generate;
 
 use myunet\controller\LoginController;
 use think\Route;

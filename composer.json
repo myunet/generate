@@ -28,7 +28,7 @@
     "extra": {
         "think":{
             "services":[
-                "myunet\\Service"
+                "myunet\\generate\\Service"
             ],
             "config":{
                 "generate": "src/config.php"
