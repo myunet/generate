@@ -2,7 +2,7 @@
 
 namespace myunet\generate;
 
-use myunet\controller\LoginController;
+use myunet\generate\controller\LoginController;
 use think\Route;
 use think\Service as BaseService;
 

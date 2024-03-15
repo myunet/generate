@@ -1,10 +1,11 @@
 {
-    "name": "myunet/generate",
-    "description": "This is a practical tool",
+    "name": "myunet/think-generate",
+    "description": "The Generate Code Library For ThinkPHP",
     "keywords": [
         "generate",
         "myunet",
-        "php"
+        "php",
+        "think"
     ],
     "autoload": {
         "psr-4": {

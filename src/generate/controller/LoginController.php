@@ -1,6 +1,6 @@
 <?php
 
-namespace myunet\controller;
+namespace myunet\generate\controller;
 
 class LoginController
 {
