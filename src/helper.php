@@ -53,11 +53,11 @@ if (!function_exists('get_mysql_param')) {
     /**
      * @param array $data
      * @param string $param_name
-     * @return mixed
+     * @return string
      */
-    function get_mysql_param(array $data, string $param_name): mixed
+    function get_mysql_param(array $data, string $param_name): string
     {
-        $targetValue = null;
+        $targetValue = "";
         foreach ($data as $item) {
             if ($item["Variable_name"] === $param_name) {
                 $targetValue = $item["Value"];
