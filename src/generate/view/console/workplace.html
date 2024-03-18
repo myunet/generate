@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>工作台</title>
+    {include file="common/head"}
+    <style>
+        /** 应用快捷块样式 */
+        .console-app-group {
+            padding: 16px;
+            border-radius: 4px;
+            text-align: center;
+            background-color: #fff;
+            cursor: pointer;
+            display: block;
+        }
+
+        .console-app-group .console-app-icon {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            margin-bottom: 6px;
+            display: inline-block;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 32px;
+            color: #69c0ff;
+        }
+
+        .console-app-group:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, .08);
+        }
+
+        /** //应用快捷块样式 */
+
+
+        /** 卡片轮播图样式 */
+        .admin-carousel .layui-carousel-ind {
+            position: absolute;
+            top: -41px;
+            text-align: right;
+        }
+
+        .admin-carousel .layui-carousel-ind ul {
+            background: 0 0;
+        }
+
+        .admin-carousel .layui-carousel-ind li {
+            background-color: #e2e2e2;
+        }
+
+        .admin-carousel .layui-carousel-ind li.layui-this {
+            background-color: #999;
+        }
+
+        /** 广告位轮播图 */
+        .admin-news .layui-carousel-ind {
+            height: 45px;
+        }
+
+        .admin-news a {
+            display: block;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        /** 最新动态时间线 */
+        .layui-timeline-dynamic .layui-timeline-item {
+            padding-bottom: 0;
+        }
+
+        .layui-timeline-dynamic .layui-timeline-item:before {
+            top: 16px;
+        }
+
+        .layui-timeline-dynamic .layui-timeline-axis {
+            width: 9px;
+            height: 9px;
+            left: 1px;
+            top: 7px;
+            background-color: #cbd0db;
+        }
+
+        .layui-timeline-dynamic .layui-timeline-axis.active {
+            background-color: #0c64eb;
+            box-shadow: 0 0 0 2px rgba(12, 100, 235, .3);
+        }
+
+        .dynamic-card-body {
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .dynamic-card-body:hover {
+            overflow-y: auto;
+            padding-right: 9px;
+        }
+
+
+    </style>
+</head>
+<body>
+<!-- 正文开始 -->
+<div class="layui-fluid ew-console-wrapper">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    数据表数量<span class="layui-badge layui-badge-green pull-right">张</span>
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font">{$db_table_count}</p>
+                    <p>占用空间<span class="pull-right">{$db_size|format_bytes=###,'',0}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    数据库总连接数<span class="layui-badge layui-badge-red pull-right">次</span>
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font">{$db_connections}</p>
+                    <p>数据库总查询数<span class="pull-right">{$db_queries}次</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    数据库总发送数据量<span class="layui-badge layui-badge-blue pull-right">{$db_sent_data|format_units=###}</span>
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font">{$db_sent_data|format_bytes=###,'',0}</p>
+                    <p>数据库总接收数据量<span class="pull-right">{$db_received_data|format_bytes=###,'',0}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 快捷方式 -->
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm6" style="padding-bottom: 0;">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group" ew-href="page/system/user.html" ew-title="用户管理">
+                        <i class="console-app-icon layui-icon layui-icon-group"
+                           style="font-size: 26px;padding-top: 3px;margin-right: 6px;"></i>
+                        <div class="console-app-name">用户</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-chart" style="color: #95de64;"></i>
+                        <div class="console-app-name">分析</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-cart" style="color: #ff9c6e;"></i>
+                        <div class="console-app-name">商品</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-form"
+                           style="color: #b37feb;font-size: 30px;"></i>
+                        <div class="console-app-name">订单</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm6" style="padding-bottom: 0;">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-layer"
+                           style="color: #ffd666;font-size: 34px;"></i>
+                        <div class="console-app-name">票据</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-email"
+                           style="color: #5cdbd3;font-size: 36px;"></i>
+                        <div class="console-app-name">消息</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-note"
+                           style="color: #ff85c0;font-size: 28px;"></i>
+                        <div class="console-app-name">标签</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-slider" style="color: #ffc069;"></i>
+                        <div class="console-app-name">配置</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md6 layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-header">MySql版本信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <colgroup>
+                            <col width="90">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <script type="text/html" ew-tpl>
+                            <tr>
+                                <td>当前版本</td>
+                                <td>{$db_version}</td>
+                            </tr>
+                            <tr>
+                                <td>启动时间</td>
+                                <td>{$db_start_time}</td>
+                            </tr>
+                            <tr>
+                                <td>连接地址</td>
+                                <td>{$db_host}</td>
+                            </tr>
+                            <tr>
+                                <td>数据库名</td>
+                                <td>{$db_database}</td>
+                            </tr>
+                            <tr>
+                                <td>用户名</td>
+                                <td>{$db_user}</td>
+                            </tr>
+                        </script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-header">系统版本信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <colgroup>
+                            <col width="90">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <script type="text/html" ew-tpl>
+                            <tr>
+                                <td>当前版本</td>
+                                <td>v0.0.1 &emsp; <a href="https://www.79mud.com/" target="_blank">更新日志</a></td>
+                            </tr>
+                            <tr>
+                                <td>基于框架</td>
+                                <td>ThinkPHP-v^6.0，EasyWeb iframe-v{{layui.admin.version}}，layui-v{{layui.v}}</td>
+                            </tr>
+                            <tr>
+                                <td>仓库地址</td>
+                                <td>https://github.com/myunet/think-generate &emsp;
+                                    <a href="https://github.com/myunet/think-generate" target="_blank">立即前往</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>composer</td>
+                                <td>composer require myunet/think-generate &emsp;
+                                    <a href="https://packagist.org/packages/myunet/think-generate" target="_blank">立即前往</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1 &emsp;
+                                    <a href="https://www.79mud.com/" target="_blank">立即前往</a>
+                                </td>
+                            </tr>
+                        </script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-header">友情链接</div>
+                <div class="layui-card-body">
+                    <div class="layui-carousel admin-carousel admin-news" id="workplaceNewsCarousel">
+                        <div carousel-item>
+                            <div>
+                                <a href="http://www.layui.com/" target="_blank"
+                                   style="color:#fff;background-color: #009688;background-image: linear-gradient(to right,#009688,#5fb878);">
+                                    layui - 经典模块化前端框架</a>
+                            </div>
+                            <div>
+                                <a href="http://fly.layui.com/extend/" target="_blank"
+                                   style="color:#fff;background-color: #009fde;background-image: linear-gradient(to right,#009fde,#00beff);">
+                                    layui第三方组件平台</a>
+                            </div>
+                            <div>
+                                <a href="https://fly.layui.com/" target="_blank"
+                                   style="color:#fff;background-color: #34363f;background-image: linear-gradient(to right,#34363f,#676c7c);">
+                                    layui框架官方社区</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- js部分 -->
+{include file="common/js"}
+<script>
+    layui.use(['layer', 'carousel', 'element'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var carousel = layui.carousel;
+        var device = layui.device();
+
+        // 渲染轮播
+        carousel.render({
+            elem: '#workplaceNewsCarousel',
+            width: '100%',
+            height: '100px',
+            arrow: 'none',
+            autoplay: true,
+            trigger: device.ios || device.android ? 'click' : 'hover',
+            anim: 'fade'
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -33,7 +33,6 @@ abstract class BaseController
         $this->app     = $app;
         $this->request = $this->app->request;
         View::config([
-            //'view_path' => "F:\\work\\composer\\tpcomposer\\vendor\\myunet\\think-generate\\src\\generate\\view\\"
             'view_path' => GetRootPath()."\\generate\\view\\",
         ]);
         // 控制器初始化
