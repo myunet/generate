@@ -1,7 +1,7 @@
 <?php
 
 
-if (!function_exists('format_bytes')) {
+if (!function_exists('GetRootPath')) {
     /**
      * 获取扩展根目录
      * @return string
