@@ -39,10 +39,12 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree arrow2" lay-filter="admin-side-nav" lay-shrink="_all">
                 <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>Dashboard</cite></a>
+                    <a lay-href="{:url('generate/workplace')}"><i class="layui-icon layui-icon-home"></i>&emsp;<cite>首页</cite></a>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-util"></i>&emsp;<cite>开发工具</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="{:url('index/workplace')}">工作台</a></dd>
-                        <dd><a lay-href="{:url('test/zzzxxx')}">控制台</a></dd>
+                        <dd><a lay-href="{:url('dev/index')}">代码生成器</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -71,7 +73,7 @@
 
         // 默认加载主页
         index.loadHome({
-            menuPath: "{:url('index/workplace')}",
+            menuPath: "{:url('generate/workplace')}",
             menuName: '<i class="layui-icon layui-icon-home"></i>'
         });
 

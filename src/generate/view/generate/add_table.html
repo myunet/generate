@@ -1,0 +1,72 @@
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <!-- 表格工具栏 -->
+            <form class="layui-form toolbar">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">表名称:</label>
+                        <div class="layui-input-inline">
+                            <input name="table_name" class="layui-input" placeholder="表名称"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">表描述:</label>
+                        <div class="layui-input-inline">
+                            <input name="table_comment" class="layui-input" placeholder="表描述"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">&emsp;
+                        <button class="layui-btn icon-btn" lay-filter="addTbSearch" lay-submit>
+                            <i class="layui-icon">&#xe615;</i>搜索
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- 数据表格 -->
+            <table id="addTable" lay-filter="addTable"></table>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use(['layer', 'form', 'table', 'util', 'admin', 'xmSelect'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var util = layui.util;
+        var admin = layui.admin;
+        var xmSelect = layui.xmSelect;
+        /* 渲染表格 */
+        var insTb = table.render({
+            elem: '#addTable',
+            url: "{:url('dev/addTable')}",
+            page: true,
+            method:'post',
+            cols: [[
+                {type: 'checkbox'},
+                {type: 'numbers',title: '序号', sort: true,width:'20%'},
+                {field: 'Name', title: '表名称'},
+                {field: 'Comment', title: '表描述',},
+                {
+                    field: 'create_time', title: '创建时间', templet: function (d) {
+                        return util.toDateString(d.create_time);
+                    }, sort: true
+                },
+                {
+                    field: 'update_time', title: '更新时间', templet: function (d) {
+                        return util.toDateString(d.update_time);
+                    }, sort: true
+                }
+            ]]
+        });
+
+        /* 表格搜索 */
+        form.on('submit(addTbSearch)', function (data) {
+            insTb.reload({where: data.field, page: {curr: 1}});
+            return false;
+        });
+
+    });
+</script>

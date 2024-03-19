@@ -24,12 +24,17 @@ abstract class BaseController
     protected $app;
 
     /**
+     * 模型实例
+     * @var
+     */
+    protected $model;
+
+    /**
      * 构造方法
      * @access public
      * @param  App  $app  应用对象
      */
-    public function __construct(App $app)
-    {
+    public function __construct(App $app){
         $this->app     = $app;
         $this->request = $this->app->request;
         View::config([
@@ -41,7 +46,19 @@ abstract class BaseController
 
     // 初始化
     protected function initialize(){
-
+        //检测是否安装sql文件
+        app_is_installed();
     }
 
+    protected function renderJson($code = 1, $msg = '', $data = []){
+        return compact('code', 'msg', 'data');
+    }
+
+    protected function success($msg = 'success', $data = [], $code = 1){
+        return json($this->renderJson($code, $msg, $data));
+    }
+
+    protected function error($msg = 'error', $data = [], $code = 0){
+        return json($this->renderJson($code, $msg, $data));
+    }
 }
